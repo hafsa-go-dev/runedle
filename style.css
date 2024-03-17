@@ -1,0 +1,70 @@
+.concert-one-regular {
+    font-family: "Concert One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.new-tegomin-regular {
+    font-family: "New Tegomin", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-content {
+    text-align: center;
+    font-family: "Concert One", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.header {
+    width: 100%;
+    margin-bottom: 2rem;
+    background-color: #99aabf;
+    color: whitesmoke;
+}
+
+h1 {
+    font-family: "New Tegomin", serif;
+    font-size: 3rem;
+    padding: 0;
+    margin-bottom: 0.25rem;
+}
+
+button {
+    border: 0 solid gray;
+    border-radius: 0.5rem;
+    background-color: #5b7ba9;
+    color: whitesmoke;
+    line-height: 0.5rem;
+    padding: 0.05rem 0.5rem;
+    margin-bottom: 1rem;
+}
+.grid-container {
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 450px;
+}
+
+.grid-element {
+    font-size: 3rem;
+    border: 0.25rem solid gray;
+}
+
+.wrong-place {
+    background-color: gold;
+}
+
+.correct {
+    background-color: seagreen;
+    color: whitesmoke;
+}
+.score-text {
+    color: seagreen;
+}
+.desc {
+    font-weight: 100;
+}
