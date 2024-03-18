@@ -18,6 +18,10 @@
     justify-content: center;
     flex-direction: column;
 }
+.game-title {
+    margin-top: 0;
+    padding-top: 0;
+}
 .header {
     display: flex;
     flex-direction: column;
@@ -35,6 +39,7 @@ h1 {
     font-family: "New Tegomin", serif;
     font-size: 3rem;
     padding: 0;
+    margin-top: 0;
     margin-bottom: 0.25rem;
 }
 
