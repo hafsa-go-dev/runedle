@@ -155,11 +155,12 @@ function play() {
 
 function validate(userInput) {
     var markedWrongPlace = []; // Array to keep track of letters already marked as "wrong place"
+    var markedCorrect = [];
 
     for (var j = 0; j < 5; j++) {
         if (userInput[j].toLowerCase() === wordArray[j]) {
             $("." + level + "-" + (j+1)).addClass("correct");
-
+            markedCorrect.push(userInput[j].toLowerCase());
         } else if (wordArray.includes(userInput[j].toLowerCase())) {
             // Find the index of the guessed letter in the wordArray
             var indexInWord = wordArray.indexOf(userInput[j].toLowerCase());
@@ -167,7 +168,7 @@ function validate(userInput) {
             // Check if the letter exists in the wordArray but is in a different position
             if (indexInWord !== -1 && indexInWord !== j) {
                 // Check if the letter is not already marked as "correct" or "wrong place"
-                if (!markedWrongPlace.includes(userInput[j].toLowerCase())) {
+                if (!markedWrongPlace.includes(userInput[j].toLowerCase()) && !markedCorrect.includes(userInput[j].toLowerCase())) {
                     $("." + level + "-" + (j+1)).addClass("wrong-place");
                     markedWrongPlace.push(userInput[j].toLowerCase()); // Add the letter to the marked list
                 }
