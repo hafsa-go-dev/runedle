@@ -84,8 +84,10 @@ const wordList = [
     "artio",
     "venny",
     "karam",
-    "monks"
-
+    "monks",
+    "snare",
+    "stars",
+    "click"
 ]
 
 var wordArray = [];
@@ -135,6 +137,9 @@ function play() {
             if(ev.keyCode > 64 && ev.keyCode < 91) {
                 userWordArray.push(ev.key);
                 $("." + level + "-" + (userWordArray.length)).text(ev.key);
+            } else if (userWordArray.length !== 0 && ev.keyCode === 8) {
+                userWordArray.pop();
+                $("." + level + "-" + (userWordArray.length + 1)).text("X");
             }
         }
 
