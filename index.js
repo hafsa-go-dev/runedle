@@ -106,7 +106,6 @@ function pickWord() {
     for (var i = 0; i < 5; i++) {
         wordArray[i] = gameWord.charAt(i);
     }
-    console.log(wordArray);
 }
 
 // initializing the user word array to compare to game word later
@@ -185,10 +184,6 @@ function validateWordArray(userWord) {
 
         var letterMarkedWrongArr = markedWrong.filter((letter) => letter === userLetter);
         var letterMarkedWrongCt = letterMarkedWrongArr.length;
-
-        console.log(letterCtArr);
-        console.log(lettersMarkedCorrectArr);
-        console.log(letterMarkedWrongArr);
 
         if ((lettersMarkedCorrectCt + letterMarkedWrongCt) < letterCt) {
             if (!$("." + level + "-" + (j + 1)).hasClass("correct")) {
