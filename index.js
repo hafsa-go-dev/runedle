@@ -87,7 +87,9 @@ const wordList = [
     "monks",
     "snare",
     "stars",
-    "click"
+    "click",
+    "chins",
+    "dinhs"
 ]
 
 var wordArray = [];
