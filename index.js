@@ -82,7 +82,6 @@ const wordList = [
     "drags",
     "wildy",
     "artio",
-    "venny",
     "karam",
     "monks",
     "snare",
@@ -164,6 +163,15 @@ function play() {
 }
 
 function validateWordArray(userWord) {
+
+    for (var k = 0; k < 5; k++){
+        var userL = userWord[k].toLowerCase();
+        if (userL === wordArray[k]) {
+            $("." + level + "-" + (k + 1)).addClass("correct");
+            markedCorrect.push(userL);
+        }
+    }
+
 
     for (var j = 0; j < 5; j++) {
 
