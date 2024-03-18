@@ -164,7 +164,7 @@ function play() {
 
 function validateWordArray(userWord) {
 
-    for (var k = 0; k < 5; k++){
+    for (var k = 0; k < 5; k++) {
         var userL = userWord[k].toLowerCase();
         if (userL === wordArray[k]) {
             $("." + level + "-" + (k + 1)).addClass("correct");
@@ -186,12 +186,13 @@ function validateWordArray(userWord) {
         var letterMarkedWrongArr = markedWrong.filter((letter) => letter === userLetter);
         var letterMarkedWrongCt = letterMarkedWrongArr.length;
 
+        console.log(letterCtArr);
+        console.log(lettersMarkedCorrectArr);
+        console.log(letterMarkedWrongArr);
 
-        if ((lettersMarkedCorrectCt + letterMarkedWrongCt ) < letterCt) {
-            if (userLetter === wordArray[j]) {
-                $("." + level + "-" + (j + 1)).addClass("correct");
-                markedCorrect.push(userLetter);
-            } else if (letterCt > 0) {
+        if ((lettersMarkedCorrectCt + letterMarkedWrongCt) < letterCt) {
+            if (!$("." + level + "-" + (j + 1)).hasClass("correct")) {
+
                 $("." + level + "-" + (j + 1)).addClass("wrong-place");
                 markedWrong.push(userLetter); // Add the letter to the marked list
             }
