@@ -89,7 +89,13 @@ const wordList = [
     "stars",
     "click",
     "chins",
-    "dinhs"
+    "dinhs",
+    "santa",
+    "elven",
+    "sewer",
+    "arena",
+    "block",
+    "tears"
 ]
 
 var wordArray = [];
@@ -111,6 +117,8 @@ var userWordArray = [];
 var gameStart = false;
 var level = 0;
 var score = 0;
+var markedCorrect = [];
+var markedWrong = [];
 
 $("#start-button").on("click", function () {
     if (!gameStart) {
@@ -127,7 +135,7 @@ $("#start-button").on("click", function () {
 function restart() {
     $(".grid-element").text("X").removeClass("wrong-place correct");
     wordArray = [];
-    userWordArray =[];
+    userWordArray = [];
     pickWord();
     level = 1;
 }
@@ -136,7 +144,7 @@ function play() {
     var k = 1;
     $(document).keydown(function (ev) {
         if (userWordArray.length < 5) {
-            if(ev.keyCode > 64 && ev.keyCode < 91) {
+            if (ev.keyCode > 64 && ev.keyCode < 91) {
                 userWordArray.push(ev.key);
                 $("." + level + "-" + (userWordArray.length)).text(ev.key);
             } else if (userWordArray.length !== 0 && ev.keyCode === 8) {
@@ -146,39 +154,50 @@ function play() {
         }
 
         if (userWordArray.length === 5) {
-            validate(userWordArray);
+            validateWordArray(userWordArray);
             userWordArray = [];
+            markedCorrect = [];
+            markedWrong = [];
             level++;
         }
     });
 }
 
-function validate(userInput) {
-    var markedWrongPlace = []; // Array to keep track of letters already marked as "wrong place"
-    var markedCorrect = [];
+function validateWordArray(userWord) {
 
     for (var j = 0; j < 5; j++) {
-        if (userInput[j].toLowerCase() === wordArray[j]) {
-            $("." + level + "-" + (j+1)).addClass("correct");
-            markedCorrect.push(userInput[j].toLowerCase());
-        } else if (wordArray.includes(userInput[j].toLowerCase())) {
-            // Find the index of the guessed letter in the wordArray
-            var indexInWord = wordArray.indexOf(userInput[j].toLowerCase());
 
-            // Check if the letter exists in the wordArray but is in a different position
-            if (indexInWord !== -1 && indexInWord !== j) {
-                // Check if the letter is not already marked as "correct" or "wrong place"
-                if (!markedWrongPlace.includes(userInput[j].toLowerCase()) && !markedCorrect.includes(userInput[j].toLowerCase())) {
-                    $("." + level + "-" + (j+1)).addClass("wrong-place");
-                    markedWrongPlace.push(userInput[j].toLowerCase()); // Add the letter to the marked list
-                }
+        var userLetter = userWord[j].toLowerCase();
+
+        var letterCtArr = wordArray.filter((letter) => letter === userLetter);
+        var letterCt = letterCtArr.length;
+
+        var lettersMarkedCorrectArr = markedCorrect.filter((letter) => letter === userLetter);
+        var lettersMarkedCorrectCt = lettersMarkedCorrectArr.length;
+
+        var letterMarkedWrongArr = markedWrong.filter((letter) => letter === userLetter);
+        var letterMarkedWrongCt = letterMarkedWrongArr.length;
+
+
+        if ((lettersMarkedCorrectCt + letterMarkedWrongCt ) < letterCt) {
+            if (userLetter === wordArray[j]) {
+                $("." + level + "-" + (j + 1)).addClass("correct");
+                markedCorrect.push(userLetter);
+            } else if (letterCt > 0) {
+                $("." + level + "-" + (j + 1)).addClass("wrong-place");
+                markedWrong.push(userLetter); // Add the letter to the marked list
             }
         }
     }
 
-    var userWord = userInput.join("");
+    userWordArray = [];
+    markedCorrect = [];
+    markedWrong = [];
+
+    var userWordJoined = userWord.join("");
     var word = wordArray.join("");
-    if (userWord.toLowerCase() === word) {
+
+    if (userWordJoined.toLowerCase() === word) {
         score++;
         $("#score-count").text(score);
     } else if (level === 6) {
