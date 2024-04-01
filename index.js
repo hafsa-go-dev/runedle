@@ -118,6 +118,7 @@ var score = 0;
 var markedCorrect = [];
 var markedWrong = [];
 
+// starts the game or restarts it
 $("#start-button").on("click", function () {
     if (!gameStart) {
         gameStart = true;
